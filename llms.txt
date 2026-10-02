@@ -1,0 +1,22 @@
+# Kelp Horn
+
+> Kelp Horn is a free app (iOS and Android) with a live map and push alerts for whale sightings around Hermanus and the Overberg, Western Cape, South Africa. Sightings are posted by a small group of approved locals who watch Walker Bay, so an alert means whales. No ads, and no account needed to view the map or get alerts.
+
+Key facts:
+
+- What it answers: "Are there whales in Hermanus right now, and where?"
+- How it works: a sighting is a pin at one of 20 shore viewing spots, from Onrus Beach to Grotto. It stays bright for 90 minutes after whales were last seen, then goes grey, and the map starts fresh at midnight. An empty map means no whales have been reported today.
+- Alerts: push notifications per area, the moment a sighting is posted.
+- Confirmations: anyone signed in can tap "Yes I saw", which keeps the sighting bright.
+- Sharing: one tap sends a sighting to WhatsApp with a link to the live map.
+- Season: southern right whales are usually in Walker Bay from about June to December, most from about August to October. Humpback and Bryde's whales, dolphins and occasionally orcas are seen too.
+- Price: free, no ads, no in-app purchases.
+- Privacy: no analytics or ad tracking. Location never leaves the phone. Data is stored in the EU (Frankfurt).
+- Who makes it: h360.dev, Hermanus, South Africa. An independent project, not connected to Hermanus Tourism or any tour operator.
+- Availability: launching on the App Store and Google Play; until then this site says "coming soon".
+
+## Pages
+
+- [Home](https://kelphorn.h360.dev/): what the app does, with a FAQ
+- [Whale watching in Hermanus from land](https://kelphorn.h360.dev/whale-watching-hermanus/): the 20 shore viewing spots west to east, when to come, and tips
+- [Privacy policy](https://kelphorn.h360.dev/privacy/): what is collected, where it's kept, and how to delete it

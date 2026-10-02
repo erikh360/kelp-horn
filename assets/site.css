@@ -37,6 +37,7 @@ a { color: var(--navy); }
 h1, h2 { line-height: 1.2; color: var(--navy); }
 h1 { font-size: 2rem; margin: 0 0 8px; }
 h2 { font-size: 1.2rem; margin: 32px 0 8px; }
+h3 { font-size: 1.05rem; line-height: 1.3; color: var(--navy); margin: 20px 0 4px; }
 
 .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 24px; }
 .muted { color: var(--muted); }

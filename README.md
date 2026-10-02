@@ -8,10 +8,15 @@ and `docs/backend.md` (decision 6) in the parent folder.
 | Path | What |
 |---|---|
 | `/` | Home page |
+| `/whale-watching-hermanus/` | Guide to watching from the shore: season, the 20 spots, tips. The page people search for. |
 | `/privacy/` | Privacy policy. App Store review needs it. |
 | `/s/?id={sighting_id}` | Share page. Loads the sighting in the browser from `sightings_public`. |
 | `/.well-known/` | `apple-app-site-association` and `assetlinks.json`, for Universal Links and App Links |
+| `/llms.txt` | Plain-text summary for AI assistants |
 | `og.jpg` | The one link preview image, 1200×630. Keep it under 300 KB or WhatsApp drops it. |
+
+Search and AI discovery, and what to do after deploying, are in `docs/discovery.md` in the
+parent folder. The FAQ on the home page is in its JSON-LD too: change both together.
 
 `.nojekyll` is what makes GitHub Pages serve `.well-known`. Don't delete it.
 

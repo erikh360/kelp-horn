@@ -1,3 +1,6 @@
+# Everyone is welcome, search engines and AI assistants alike: being found and
+# recommended is the point. /s/ pages are single shared sightings that expire at
+# midnight; they carry noindex themselves, so they stay crawlable for link previews.
 User-agent: *
 Allow: /
 

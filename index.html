@@ -20,6 +20,88 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/stores.js" defer></script>
+<!-- Structured data for search engines and AI answers. A data block, not a script:
+     the Content Security Policy doesn't run it and doesn't need to. Keep the FAQ answers
+     word for word the same as the FAQ on the page. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://kelphorn.h360.dev/#website",
+      "name": "Kelp Horn",
+      "alternateName": "Kelp Horn · Hermanus whale sightings",
+      "url": "https://kelphorn.h360.dev/",
+      "inLanguage": "en-ZA",
+      "publisher": { "@id": "https://kelphorn.h360.dev/#publisher" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://kelphorn.h360.dev/#publisher",
+      "name": "h360.dev",
+      "url": "https://h360.dev",
+      "email": "kelphorn-privacy@h360.dev",
+      "address": { "@type": "PostalAddress", "addressLocality": "Hermanus", "addressCountry": "ZA" }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://kelphorn.h360.dev/#app",
+      "name": "Kelp Horn",
+      "description": "Live map and push alerts for whale sightings around Hermanus and the Overberg, South Africa. Sightings are posted by locals who watch the bay.",
+      "url": "https://kelphorn.h360.dev/",
+      "image": "https://kelphorn.h360.dev/og.jpg",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "TravelApplication",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ZAR" },
+      "areaServed": [
+        { "@type": "Place", "name": "Hermanus, Western Cape, South Africa" },
+        { "@type": "Place", "name": "Walker Bay" },
+        { "@type": "Place", "name": "Overberg" }
+      ],
+      "publisher": { "@id": "https://kelphorn.h360.dev/#publisher" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kelphorn.h360.dev/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I know if there are whales in Hermanus today?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open Kelp Horn. The map shows where whales have been seen today around Hermanus, posted by locals who watch the bay. A bright pin means whales were seen in the last 90 minutes. Turn on alerts to hear the moment new whales are spotted." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Kelp Horn free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Kelp Horn is free, with no ads. You don't need an account to see the map or get alerts." }
+        },
+        {
+          "@type": "Question",
+          "name": "When is whale season in Hermanus?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Southern right whales are usually in Walker Bay from about June to December, and most are around from about August to October." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does Kelp Horn work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Around Hermanus and the wider Overberg, starting with 20 viewing spots along the Hermanus coast from Onrus Beach to Grotto." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who posts the sightings?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A small group of approved locals who know the coast, so an alert means whales. Anyone who signs in can confirm a sighting with \"Yes I saw\", which keeps it bright for the next person." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Kelp Horn run by Hermanus Tourism or a tour company?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Kelp Horn is an independent project made in Hermanus. It isn't connected to Hermanus Tourism or any tour operator." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <main>
@@ -52,9 +134,35 @@
 
   <h2>Tell the family</h2>
   <p>One tap sends a sighting to WhatsApp, with the spot, the time and a link to the map.</p>
+  <h2>Where to watch from</h2>
+  <p>Hermanus has 20 shore spots on the map, most along the cliff path. See
+    <a href="/whale-watching-hermanus/">whale watching in Hermanus from land</a> for the
+    spots, the season and tips.</p>
+
+  <h2>Questions</h2>
+  <h3>How do I know if there are whales in Hermanus today?</h3>
+  <p>Open Kelp Horn. The map shows where whales have been seen today around Hermanus, posted
+    by locals who watch the bay. A bright pin means whales were seen in the last 90 minutes.
+    Turn on alerts to hear the moment new whales are spotted.</p>
+  <h3>Is Kelp Horn free?</h3>
+  <p>Yes. Kelp Horn is free, with no ads. You don't need an account to see the map or get
+    alerts.</p>
+  <h3>When is whale season in Hermanus?</h3>
+  <p>Southern right whales are usually in Walker Bay from about June to December, and most are
+    around from about August to October.</p>
+  <h3>Where does Kelp Horn work?</h3>
+  <p>Around Hermanus and the wider Overberg, starting with 20 viewing spots along the Hermanus
+    coast from Onrus Beach to Grotto.</p>
+  <h3>Who posts the sightings?</h3>
+  <p>A small group of approved locals who know the coast, so an alert means whales. Anyone who
+    signs in can confirm a sighting with "Yes I saw", which keeps it bright for the next
+    person.</p>
+  <h3>Is Kelp Horn run by Hermanus Tourism or a tour company?</h3>
+  <p>No. Kelp Horn is an independent project made in Hermanus. It isn't connected to Hermanus
+    Tourism or any tour operator.</p>
 </main>
 <footer>
-  Made in Hermanus <img class="flag" src="/assets/za.svg" width="18" height="12" alt="South Africa"> · <a href="/privacy/">Privacy policy</a>
+  Made in Hermanus <img class="flag" src="/assets/za.svg" width="18" height="12" alt="South Africa"> · <a href="/whale-watching-hermanus/">Whale watching in Hermanus</a> · <a href="/privacy/">Privacy policy</a>
 </footer>
 </body>
 </html>
