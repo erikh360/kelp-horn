@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://tile.openstreetmap.org; style-src 'self'; script-src 'self'; connect-src https://ywbdosltbwhucwzpvawz.supabase.co; base-uri 'none'; form-action 'none'">
+<!-- Origin only: OpenStreetMap's tile servers want a referrer, and the sighting id stays out of it. -->
+<meta name="referrer" content="strict-origin">
+<meta name="robots" content="noindex">
+<title>Whale sighting · Kelp Horn</title>
+<!-- WhatsApp's crawler runs no JavaScript, so every sighting shares this same preview.
+     See docs/sharing.md, decision 4. -->
+<meta property="og:title" content="Whale sighting · Kelp Horn">
+<meta property="og:description" content="Live whale sightings around Hermanus">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kelphorn.h360.dev/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1E3B5D">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/stores.js" defer></script>
+<script src="/s/sighting.js" defer></script>
+</head>
+<body>
+<main>
+  <a class="brand" href="/"><img src="/assets/whale.png" width="40" height="31" alt="">Kelp Horn</a>
+
+  <p id="loading" class="muted">Loading the sighting…</p>
+
+  <!-- Live: the sighting, the spot on a map, and the keep-your-distance line. -->
+  <section id="live" class="card" hidden>
+    <span class="status">Live</span>
+    <h1 class="sighting-title" data-field="title"></h1>
+    <p class="sighting-detail" data-field="detail"></p>
+    <p class="sighting-meta" data-field="seen"></p>
+    <p class="sighting-meta" data-field="credit"></p>
+    <a class="map" data-field="map" aria-label="Open the spot in OpenStreetMap"><span class="pin"></span></a>
+    <p class="map-credit">Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</p>
+    <p class="note">Give them space. Boats, swimmers and drones need a permit to go within
+      300 metres of a whale. From the shore, just enjoy the show.</p>
+  </section>
+
+  <!-- Seen earlier today, no longer live. -->
+  <section id="grey" class="card" hidden>
+    <span class="status grey">No longer live</span>
+    <h1 class="sighting-title" data-field="last-seen"></h1>
+    <p class="sighting-meta">Open Kelp Horn to see if there's anything about right now.</p>
+  </section>
+
+  <!-- Removed, from an earlier day, or not a sighting at all. No details. -->
+  <section id="gone" class="card" hidden>
+    <h1 class="sighting-title">This sighting is no longer available.</h1>
+    <p class="sighting-meta">Open Kelp Horn to see if there's anything about right now.</p>
+  </section>
+
+  <section id="error" class="card" hidden>
+    <h1 class="sighting-title">Couldn't load this sighting.</h1>
+    <p class="sighting-meta">Check your connection and reload the page.</p>
+  </section>
+
+  <section class="card get-app" data-stores>
+    <h2>Never miss the whales</h2>
+    <p class="muted">Kelp Horn tells you the moment whales are spotted around Hermanus, while
+      they're still there.</p>
+    <div class="badges" hidden></div>
+    <p class="soon">Coming soon to the App Store and Google Play.</p>
+  </section>
+</main>
+<footer>
+  <a href="/">Kelp Horn</a> · <a href="/privacy/">Privacy policy</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["97735R5A4C.dev.h360.kelphorn"],
+        "components": [
+          { "/": "/s/*", "comment": "Shared sightings open the spot sheet in the app" }
+        ]
+      }
+    ]
+  }
+}
