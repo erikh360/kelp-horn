@@ -10,6 +10,7 @@ and `docs/backend.md` (decision 6) in the parent folder.
 | `/` | Home page |
 | `/whale-watching-hermanus/` | Guide to watching from the shore: season, the 20 spots, tips. The page people search for. |
 | `/privacy/` | Privacy policy. App Store review needs it. |
+| `/delete-account/` | How to delete an account, in the app or by email. Play's Data safety form needs the URL. |
 | `/s/?id={sighting_id}` | Share page. Loads the sighting in the browser from `sightings_public`. |
 | `/.well-known/` | `apple-app-site-association` and `assetlinks.json`, for Universal Links and App Links |
 | `/llms.txt` | Plain-text summary for AI assistants |
