@@ -37,8 +37,9 @@ grep -rn TODO-LATER .
 
 - [x] **Apple Team ID** in `.well-known/apple-app-site-association`: `97735R5A4C`.
 - [ ] **Associated domains in the app.** It needs `associatedDomains: ["applinks:kelphorn.h360.dev"]`.
-- [ ] **Android signing SHA-256** in `.well-known/assetlinks.json`, from the Play Console or
-  `eas credentials`. The app also needs an `intentFilters` entry for `https://kelphorn.h360.dev/s/`.
+- [x] **Android signing SHA-256** in `.well-known/assetlinks.json`: the Play App Signing key,
+  from the Play Console (Protected with Play).
+- [ ] **Android intent filter in the app**, an `intentFilters` entry for `https://kelphorn.h360.dev/s/`.
 - [ ] **The app handling `/s/?id=`.** A Universal Link lands on the route `/s` with the id.
   The app has no such route yet; it should open the spot sheet, or the map if the sighting
   is gone.

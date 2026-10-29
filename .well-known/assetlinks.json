@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "dev.h360.kelphorn",
-      "sha256_cert_fingerprints": ["TODO-LATER-ANDROID-SIGNING-SHA256"]
+      "sha256_cert_fingerprints": ["47:89:A1:A5:8A:E8:6A:A3:6E:1A:07:B7:AD:73:C5:A5:84:5D:A1:B6:A5:42:24:3F:87:A6:E5:EC:6C:DC:21:23"]
     }
   }
 ]
