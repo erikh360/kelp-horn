@@ -1,85 +1,618 @@
-/* Kelp Horn website. Colours come from the whale: navy on white, pale belly blue. */
+/* Kelp Horn website. Sunrise over Walker Bay: a peach and coral sky, sea blues below
+   it, and the whale's own navy for type. Teal and grey are the app's live and earlier
+   pins (kelp-horn-app/src/ui/palette.ts), so the legend here matches the map. */
 
 :root {
-  --bg: #FFFFFF;
-  --card: #F3F8FC;
-  --soft: #E3EFF8;
-  --border: #D3E3F0;
-  --text: #1B3350;
-  --muted: #587089;
+  /* Sky */
+  --dawn: #FFE4CC;
+  --blush: #FFC6AC;
+  --coral: #FF8A5B;
+  --coral-ink: #B2401A;
+  --gold: #FFC857;
+  --sun: #FFE9A8;
+
+  /* Water */
+  --shallows: #8FCBDA;
+  --sea: #2F86A6;
+  --sea-dark: #23698A;
   --navy: #1E3B5D;
-  --on-navy: #FFFFFF;
+  --abyss: #142B45;
+  --foam: #EAF5F7;
+
+  /* Surfaces and text */
+  --bg: #FFFFFF;
+  --sand: #FFF7EF;
+  --border: #F1E1D3;
+  --text: #1B3350;
+  --muted: #55677A;
+  --on-dark: #FFFFFF;
+  --on-dark-muted: #B9CADB;
+
+  /* The app's pins */
   --live: #0E7C86;
-  --grey: #8494A3;
+  --grey: #8A969C;
+
+  --radius-s: 12px;
+  --radius-m: 20px;
+  --radius-l: 28px;
+  --shadow: 0 1px 2px rgba(30, 59, 93, 0.06), 0 8px 24px rgba(30, 59, 93, 0.08);
+  --shadow-raised: 0 2px 4px rgba(30, 59, 93, 0.08), 0 18px 40px rgba(30, 59, 93, 0.14);
+  --wide: 1080px;
+  --prose: 680px;
+
   /* Always light, even when the phone is in dark mode. */
   color-scheme: light;
 }
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Short pages still put the footer at the bottom. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > main { flex: 1 0 auto; }
+
+img { max-width: 100%; }
+
+a {
+  color: var(--navy);
+  text-decoration-color: var(--coral);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--coral-ink); }
+
+:focus-visible {
+  outline: 3px solid var(--sea);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-main {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 32px 16px 48px;
-}
+h1, h2, h3 { color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.25rem, 1.6rem + 3vw, 3.4rem); font-weight: 800; margin: 0 0 16px; }
+h2 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem); font-weight: 750; margin: 0 0 12px; }
+h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
 
-a { color: var(--navy); }
-
-h1, h2 { line-height: 1.2; color: var(--navy); }
-h1 { font-size: 2rem; margin: 0 0 8px; }
-h2 { font-size: 1.2rem; margin: 32px 0 8px; }
-h3 { font-size: 1.05rem; line-height: 1.3; color: var(--navy); margin: 20px 0 4px; }
-
-.lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 24px; }
+.lede { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem); color: var(--muted); margin: 0 0 28px; }
 .muted { color: var(--muted); }
 .small { font-size: 0.9rem; }
 
-/* Header: the whale and the name */
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral-ink);
+}
+
+.wrap {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 640px) { .wrap { padding: 0 24px; } }
+
+.section { padding: 72px 0; }
+.section.tinted { background: var(--sand); }
+.section-head { max-width: 620px; margin: 0 0 40px; }
+.section-head p { color: var(--muted); margin: 0; }
+.center { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 247, 239, 0.82);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid rgba(241, 225, 211, 0.7);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
 
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
   color: var(--navy);
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 28px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
 }
+.brand:hover { color: var(--navy); }
 /* The whale is wider than it is tall: set the width and let the height follow. */
 .brand img { width: 40px; height: auto; }
 
-.hero { text-align: center; }
-.hero img { width: min(240px, 60vw); height: auto; }
+.site-nav { display: flex; align-items: center; gap: 4px; }
+.site-nav a {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--navy);
+}
+.site-nav a:hover { background: rgba(255, 138, 91, 0.14); color: var(--navy); }
+.site-nav .nav-cta { background: var(--navy); color: var(--on-dark); }
+.site-nav .nav-cta:hover { background: var(--sea-dark); color: var(--on-dark); }
+@media (max-width: 520px) { .site-nav .nav-guide { display: none; } }
 
-/* Cards */
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--navy); color: var(--on-dark); box-shadow: 0 6px 18px rgba(30, 59, 93, 0.28); }
+.btn-primary:hover { background: var(--sea-dark); color: var(--on-dark); }
+.btn-ghost { background: rgba(255, 255, 255, 0.7); color: var(--navy); box-shadow: inset 0 0 0 1.5px rgba(30, 59, 93, 0.18); }
+.btn-ghost:hover { background: var(--bg); color: var(--navy); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Sunrise hero: sky, sun, and the sea with the whale in it */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 82%, var(--sun) 0, rgba(255, 210, 122, 0.85) 9%, rgba(255, 200, 87, 0) 30%),
+    linear-gradient(180deg, var(--dawn) 0%, #FFD3B6 45%, var(--blush) 75%, #FFB89A 100%);
+  padding: 56px 0 0;
+}
+.hero-grid {
+  display: grid;
+  gap: 8px;
+  align-items: end;
+}
+.hero-copy { position: relative; z-index: 3; padding-bottom: 8px; }
+.hero h1 { max-width: 12ch; }
+.hero .lede { color: #4A5A6D; max-width: 34ch; }
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.hero-facts li { display: inline-flex; align-items: center; gap: 8px; }
+.hero-facts li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.hero-whale {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  width: min(340px, 72vw);
+  height: auto;
+  margin-bottom: -18px;
+  animation: bob 6s ease-in-out infinite;
+  filter: drop-shadow(0 18px 18px rgba(20, 43, 69, 0.18));
+}
+
+/* The sea, three bands of waves. The back two sit behind the whale, the front one in
+   front of it, so the whale looks like it's floating in the bay. */
+.waves {
+  position: relative;
+  height: 96px;
+  margin-top: -64px;
+  pointer-events: none;
+}
+.waves svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; display: block; }
+.waves .wave-back { fill: var(--shallows); opacity: 0.75; z-index: 0; }
+.waves .wave-mid { fill: var(--sea); opacity: 0.9; z-index: 0; height: 80%; }
+.waves .wave-front { fill: var(--bg); z-index: 2; height: 46%; }
+
+@media (min-width: 820px) {
+  .hero { padding-top: 88px; }
+  .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 32px; }
+  .hero-copy { padding-bottom: 104px; }
+  .hero-whale { width: min(420px, 100%); margin-bottom: -26px; }
+  .waves { height: 128px; margin-top: -96px; }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+/* A shorter hero for the inner pages */
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 100%, var(--sun) 0, rgba(255, 200, 87, 0) 34%),
+    linear-gradient(180deg, var(--dawn) 0%, var(--blush) 100%);
+  padding: 48px 0 0;
+}
+.page-hero .wrap { max-width: calc(var(--prose) + 48px); position: relative; z-index: 3; }
+.page-hero h1 { font-size: clamp(2rem, 1.5rem + 2.4vw, 2.9rem); }
+.page-hero .lede { color: #4A5A6D; margin-bottom: 0; }
+.page-hero .waves { height: 72px; margin-top: 8px; }
+
+/* Feature cards */
+
+.features {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.feature {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-raised); }
+.feature p { margin: 0; color: var(--muted); }
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+.icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon.coral { background: #FFE6DA; color: var(--coral-ink); }
+.icon.sea { background: var(--foam); color: var(--sea); }
+.icon.gold { background: #FFF1CF; color: #8A5A00; }
+.icon.teal { background: #DDF1F2; color: var(--live); }
+
+/* Split: words on one side, a picture on the other */
+
+.split { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 820px) { .split { grid-template-columns: 1fr 1fr; gap: 64px; } }
+.split p { color: var(--muted); }
+
+/* The map legend: what a pin's colour means */
+
+.legend {
+  display: grid;
+  gap: 12px;
+  background: linear-gradient(160deg, var(--foam), #F6FBFC);
+  border: 1px solid #D6EAEE;
+  border-radius: var(--radius-l);
+  padding: 24px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg);
+  border-radius: var(--radius-s);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+.legend-row strong { display: block; color: var(--navy); }
+.legend-row span { color: var(--muted); font-size: 0.95rem; }
+/* Pins are the app's whale markers (assets/pin-*.svg). */
+.dot {
+  flex: none;
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+.dot img { display: block; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25)); }
+.dot.live::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--live);
+  animation: ping 2s ease-out infinite;
+}
+.dot.empty { border-radius: 50%; border: 2px dashed var(--grey); }
+
+@keyframes ping {
+  0% { transform: scale(0.7); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Getting the app: a band of deep water */
+
+.get-app {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: var(--on-dark);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255, 138, 91, 0.35), rgba(255, 138, 91, 0) 45%),
+    radial-gradient(circle at 90% 110%, rgba(143, 203, 218, 0.35), rgba(143, 203, 218, 0) 50%),
+    linear-gradient(150deg, var(--navy), var(--sea-dark));
+  border-radius: var(--radius-l);
+  padding: 48px 24px;
+  box-shadow: var(--shadow-raised);
+}
+.get-app h2 { color: var(--on-dark); margin: 0 0 8px; }
+.get-app > p { color: #DCE7F1; max-width: 46ch; margin: 0 auto 24px; }
+.get-app img { width: 96px; height: auto; margin-bottom: 8px; }
+.badges { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.badges a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 12px 24px;
+  border-radius: 14px;
+  background: #0B1726;
+  color: var(--on-dark);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+.badges a:hover { background: #000000; color: var(--on-dark); }
+.get-app .soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  color: var(--on-dark);
+  font-weight: 600;
+}
+.get-app .soon::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.get-app :focus-visible { outline-color: var(--gold); }
+
+/* A card that leads somewhere else */
+
+.link-card {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  background: linear-gradient(120deg, #FFF1E6, var(--foam));
+  border-radius: var(--radius-l);
+  padding: 32px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.link-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-raised); color: var(--text); }
+.link-card h2 { margin-bottom: 8px; }
+.link-card p { margin: 0; color: var(--muted); }
+.link-card .arrow { font-weight: 700; color: var(--coral-ink); white-space: nowrap; }
+@media (min-width: 720px) { .link-card { grid-template-columns: 1fr auto; padding: 40px 48px; } }
+
+/* FAQ */
+
+.faq { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+.faq details {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  box-shadow: var(--shadow);
+}
+.faq details[open] { border-color: #F5C9B2; }
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  color: var(--navy);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-right: 2.5px solid var(--coral-ink);
+  border-bottom: 2.5px solid var(--coral-ink);
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform 0.2s ease;
+}
+.faq details[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+.faq details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
+
+/* Prose pages: the guide, privacy, delete account */
+
+.prose {
+  max-width: var(--prose);
+  margin: 0 auto;
+  padding: 24px 16px 72px;
+}
+@media (min-width: 640px) { .prose { padding: 32px 24px 88px; } }
+.prose h2 { font-size: clamp(1.35rem, 1.15rem + 0.9vw, 1.7rem); margin: 48px 0 12px; }
+.prose h2:first-child { margin-top: 16px; }
+.prose ol, .prose ul { padding-left: 24px; }
+.prose li { margin: 6px 0; }
+.prose .season, .prose .spots, .prose .tips { padding-left: 0; }
+.prose li::marker { color: var(--coral-ink); font-weight: 700; }
+.prose .get-app { margin: 48px 0; }
+.prose .get-app h2 { margin: 0 0 8px; }
+
+ul.plain { padding-left: 20px; }
+ul.plain li { margin: 8px 0; }
+
+.note {
+  background: var(--foam);
+  border-left: 4px solid var(--sea);
+  border-radius: var(--radius-s);
+  padding: 14px 18px;
+  margin: 16px 0 0;
+  font-size: 0.97rem;
+}
+
+/* The guide: whale season at a glance */
+
+.season {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 12px;
+}
+.prose .season li { margin: 0; }
+.season abbr { text-decoration: none; }
+.season li {
+  display: grid;
+  place-items: end center;
+  height: 72px;
+  padding-bottom: 6px;
+  border-radius: 8px;
+  background: #F2ECE6;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.season li.in { background: linear-gradient(180deg, var(--shallows), #CFE8EE); color: var(--navy); }
+.season li.peak { background: linear-gradient(180deg, var(--shallows), var(--sea) 55%, var(--sea-dark)); color: var(--on-dark); }
+.season-key { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.88rem; color: var(--muted); margin: 0 0 8px; }
+.season-key span { display: inline-flex; align-items: center; gap: 8px; }
+.season-key span::before { content: ""; width: 14px; height: 14px; border-radius: 4px; }
+.season-key .k-peak::before { background: var(--sea); }
+.season-key .k-in::before { background: var(--shallows); }
+.season-key .k-out::before { background: #F2ECE6; }
+@media (max-width: 420px) { .season li { font-size: 0.6rem; } }
+
+/* The guide: the 20 spots, west to east */
+
+.spots-dir {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral-ink);
+  margin: 24px 0 8px;
+}
+ol.spots {
+  counter-reset: spot;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.prose ol.spots li { margin: 0; }
+ol.spots li {
+  counter-increment: spot;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  font-weight: 600;
+  color: var(--navy);
+}
+ol.spots li::before {
+  content: counter(spot);
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FFE6DA;
+  color: var(--coral-ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* The guide: tips */
+
+.tips {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.prose .tips li { margin: 0; }
+.tips li {
+  background: var(--sand);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 20px;
+  color: var(--muted);
+}
+.tips li strong { display: block; color: var(--navy); font-size: 1.05rem; margin-bottom: 4px; }
+.tips .icon { width: 44px; height: 44px; border-radius: 14px; margin-bottom: 12px; }
+.tips .icon svg { width: 22px; height: 22px; }
+
+/* Cards on the share page */
 
 .card {
-  background: var(--card);
+  background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  margin: 0 0 20px;
+  border-radius: var(--radius-m);
+  padding: 24px;
+  margin: 0 0 24px;
+  box-shadow: var(--shadow-raised);
 }
 
 .status {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  gap: 8px;
+  padding: 4px 12px 4px 10px;
+  border-radius: 999px;
+  background: #DDF1F2;
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--live);
+  letter-spacing: 0.06em;
+  color: #0B6A73;
 }
 .status::before {
   content: "";
@@ -87,11 +620,18 @@ h3 { font-size: 1.05rem; line-height: 1.3; color: var(--navy); margin: 20px 0 4p
   height: 8px;
   border-radius: 50%;
   background: currentColor;
+  animation: pulse 1.6s ease-in-out infinite;
 }
-.status.grey { color: var(--grey); }
+.status.grey { color: #5F6D74; background: #EEF1F2; }
+.status.grey::before { animation: none; }
 
-.sighting-title { font-size: 1.5rem; margin: 8px 0 4px; }
-.sighting-detail { margin: 0; font-weight: 600; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.sighting-title { font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2rem); margin: 14px 0 6px; }
+.sighting-detail { margin: 0; font-weight: 700; color: var(--coral-ink); }
 .sighting-meta { margin: 4px 0 0; color: var(--muted); }
 
 .map {
@@ -99,62 +639,71 @@ h3 { font-size: 1.05rem; line-height: 1.3; color: var(--navy); margin: 20px 0 4p
   display: block;
   overflow: hidden;
   width: 100%;
-  height: 240px;
-  border-radius: 12px;
-  margin-top: 16px;
-  background: var(--soft);
+  height: 260px;
+  border-radius: var(--radius-s);
+  margin-top: 20px;
+  background: var(--foam);
+  box-shadow: inset 0 0 0 1px rgba(30, 59, 93, 0.1);
 }
 .map img { position: absolute; max-width: none; }
 .pin {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
-  border-radius: 50%;
-  background: #1E3B5D;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
   z-index: 1;
 }
-.map-credit { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); }
+.map-credit { margin: 8px 0 0; font-size: 0.8rem; color: var(--muted); }
+.card .note { margin-top: 20px; }
 
-.note {
-  background: var(--soft);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin: 16px 0 0;
+.share { max-width: 640px; margin: 0 auto; padding: 32px 16px 72px; }
+.share .get-app { margin-top: 8px; }
+
+/* 404 */
+
+.lost { text-align: center; }
+.lost img { width: min(220px, 56vw); height: auto; animation: bob 6s ease-in-out infinite; }
+.lost .btn { margin-top: 8px; }
+
+/* Footer: the deep end */
+
+.site-footer {
+  background: var(--abyss);
+  color: var(--on-dark-muted);
   font-size: 0.95rem;
 }
-
-/* Getting the app */
-
-.get-app { text-align: center; }
-.get-app h2 { margin-top: 0; }
-.badges { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.badges a {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: var(--navy);
-  color: var(--on-navy);
-  font-weight: 600;
-  text-decoration: none;
+.site-footer .footer-wave { display: block; width: 100%; height: 48px; fill: var(--abyss); background: var(--bg); }
+.site-footer.from-sand .footer-wave { background: var(--sand); }
+.footer-grid {
+  display: grid;
+  gap: 32px;
+  padding-top: 24px;
+  padding-bottom: 40px;
 }
-.soon { margin: 0; color: var(--muted); }
-
-ul.plain { padding-left: 20px; }
-ul.plain li { margin: 4px 0; }
-
-footer {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 16px 32px;
-  font-size: 0.9rem;
-  color: var(--muted);
+@media (min-width: 720px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.site-footer .brand { color: var(--on-dark); margin-bottom: 12px; }
+.site-footer p { margin: 0 0 8px; }
+.site-footer h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin: 6px 0 12px;
 }
-footer a { color: var(--muted); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin: 0 0 8px; }
+.site-footer a { color: var(--on-dark-muted); text-decoration: none; }
+.site-footer a:hover { color: var(--on-dark); text-decoration: underline; text-decoration-color: var(--coral); }
+.site-footer :focus-visible { outline-color: var(--gold); }
+.footer-base {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  padding-bottom: 28px;
+  font-size: 0.85rem;
+}
 
 [hidden] { display: none !important; }
 
@@ -163,4 +712,18 @@ footer a { color: var(--muted); }
   vertical-align: -1px;
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
