@@ -43,7 +43,7 @@ grep -rn TODO-LATER .
 - [ ] **The app handling `/s/?id=`.** A Universal Link lands on the route `/s` with the id.
   The app has no such route yet; it should open the spot sheet, or the map if the sighting
   is gone.
-- [ ] **Store links** in `assets/stores.js`. While they're empty, pages say "Coming soon".
+- [x] **Store links** in `assets/stores.js`, live 2026-11-11. An empty one makes the pages say "Coming soon".
 - [ ] **Check that iOS accepts the association file.** GitHub Pages serves it as
   `application/octet-stream`. Apple's CDN has accepted that for years, but confirm with
   `curl https://app-site-association.cdn-apple.com/a/v1/kelphorn.h360.dev` once it's live.

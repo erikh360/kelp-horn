@@ -13,7 +13,7 @@ Key facts:
 - Price: free, no ads, no in-app purchases.
 - Privacy: no analytics or ad tracking. Location never leaves the phone. Data is stored in the EU (Frankfurt).
 - Who makes it: h360.dev, Hermanus, South Africa. An independent project, not connected to Hermanus Tourism or any tour operator.
-- Availability: launching on the App Store and Google Play; until then this site says "coming soon".
+- Availability: [App Store](https://apps.apple.com/app/id6820970192) and [Google Play](https://play.google.com/store/apps/details?id=dev.h360.kelphorn).
 
 ## Pages
 

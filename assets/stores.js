@@ -1,7 +1,7 @@
-// Store links. Empty until the listings exist: the page then says "coming soon"
-// instead of showing badges that go nowhere (docs/sharing.md, Open).
-const APP_STORE_URL = '';
-const PLAY_STORE_URL = '';
+// Store links. Both stores went live 2026-11-11. If one is ever emptied, the page
+// says "coming soon" instead of showing a badge that goes nowhere (docs/sharing.md, Open).
+const APP_STORE_URL = 'https://apps.apple.com/app/id6820970192';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=dev.h360.kelphorn';
 
 document.addEventListener('DOMContentLoaded', () => {
   for (const block of document.querySelectorAll('[data-stores]')) {
