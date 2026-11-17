@@ -520,7 +520,7 @@ ul.plain li { margin: 8px 0; }
 .season-key .k-out::before { background: #F2ECE6; }
 @media (max-width: 420px) { .season li { font-size: 0.6rem; } }
 
-/* The guide: the 20 spots, west to east */
+/* The guide: the spots, west to east */
 
 .spots-dir {
   display: flex;

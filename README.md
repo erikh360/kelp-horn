@@ -8,7 +8,7 @@ and `docs/backend.md` (decision 6) in the parent folder.
 | Path | What |
 |---|---|
 | `/` | Home page |
-| `/whale-watching-hermanus/` | Guide to watching from the shore: season, the 20 spots, tips. The page people search for. |
+| `/whale-watching-hermanus/` | Guide to watching from the shore: season, the spots, tips. The page people search for. |
 | `/privacy/` | Privacy policy. App Store review needs it. |
 | `/delete-account/` | How to delete an account, in the app or by email. Play's Data safety form needs the URL. |
 | `/s/?id={sighting_id}` | Share page. Loads the sighting in the browser from `sightings_public`. |
@@ -44,9 +44,12 @@ grep -rn TODO-LATER .
   The app has no such route yet; it should open the spot sheet, or the map if the sighting
   is gone.
 - [x] **Store links** in `assets/stores.js`, live 2026-11-11. An empty one makes the pages say "Coming soon".
-- [ ] **Check that iOS accepts the association file.** GitHub Pages serves it as
-  `application/octet-stream`. Apple's CDN has accepted that for years, but confirm with
-  `curl https://app-site-association.cdn-apple.com/a/v1/kelphorn.h360.dev` once it's live.
+- [x] **Check that iOS accepts the association file.** GitHub Pages serves it as
+  `application/octet-stream`. Apple's CDN serves it back unchanged (checked 2026-11-17 with
+  `curl https://app-site-association.cdn-apple.com/a/v1/kelphorn.h360.dev`).
+
+Checked 2026-11-17: the three open app items are still open. `app.json` has no associated
+domains or intent filters, and the app has no `/s` route, so shared links open the website.
 
 ## Security
 
